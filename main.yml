@@ -1,0 +1,29 @@
+---
+  - hosts: all
+    become: yes
+    roles:
+      - aix_instana_agent
+    vars:
+      instana_agent_flavor: "static"
+      instana_agent_jdk: "/opt/jdk"
+      instana_agent_updates_enabled: yes
+      instana_agent_updates_interval: "DAY"
+      instana_agent_updates_time: "04:30"
+      instana_agent_zone: "prod"
+      instana_agent_agent_key: snVMhmK2SOSVFGZ2ue1Cow
+      instana_agent_endpoint_host: agent-acceptor.vaazdlvapm300.wellpoint.com
+      instana_agent_endpoint_port: 443
+      instana_agent_configure_repo: no
+      instana_agent_rpm: asdf.rpm
+      tmp_directory: /tmp
+
+# AIX RPM install:  RPM includes Java
+# https://artifact-public.instana.io/artifactory/rel-rpm-agent-local/ppc/
+# Install by doing the following:
+#     export INSTANA_AGENT_HOST=agent-acceptor.vaazdlvapm300.wellpoint.com
+#     export INSTANA_AGENT_PORT=443
+#     export INSTANA_AGENT_KEY=snVMhmK2SOSVFGZ2ue1Cow
+#     export INSTANA_AGENT_AUTOSTART=true
+#     rpm --install /tmp/instana-agent-dynamic-j9-aix-20250822-1045.ppc.rpm
+# /etc/instana is where stuff lives
+# curl -vvv --user "_:snVMhmK2SOSVFGZ2ue1Cow" https://artifact-public.instana.io/artifactory/shared

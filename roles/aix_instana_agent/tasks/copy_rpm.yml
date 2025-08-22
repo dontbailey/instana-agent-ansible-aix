@@ -1,0 +1,6 @@
+---
+
+- name: Copy RPM File
+  ansible.builtin.copy:
+    src: "{{ instana_agent_rpm }}"
+    dest: "{{ tmp_directory }}"

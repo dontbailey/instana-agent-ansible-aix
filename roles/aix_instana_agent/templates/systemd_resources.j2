@@ -1,0 +1,9 @@
+[Service]
+{% if instana_agent_limit_cpu_enabled %}
+CPUAccounting=true
+CPUQuota={{ ( instana_agent_limit_cpu_quota * 100 ) }}%
+{% endif %}
+{% if instana_agent_limit_memory_enabled %}
+MemoryAccounting=true
+MemoryMax={{ instana_agent_limit_memory_maxsize }}M
+{% endif %}

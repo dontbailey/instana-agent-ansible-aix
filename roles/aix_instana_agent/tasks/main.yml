@@ -1,0 +1,40 @@
+# encoding: utf-8
+---
+
+- name: 'check: flavor attribute valid?'
+  fail:
+    msg: |
+      The flavor attribute for the agent must be either "dynamic"
+      or "static".
+  when: >
+    instana_agent_flavor != 'dynamic' and
+    instana_agent_flavor != 'static'
+
+- name: 'check: mode attribute valid?'
+  fail:
+    msg: |
+      The agent mode attribute must be either "apm", "infrastructure"
+      or "off".
+  when: >
+    instana_agent_mode != 'off' and
+    instana_agent_mode != 'apm' and
+    instana_agent_mode != 'infrastructure'
+
+- name: 'check: required attributes present?'
+  fail:
+    msg: |
+      If we don't have all the informations on the required Instana
+      monitoring endpoint or the agent key, we cannot install the Instana
+      monitoring agent.
+  when: >
+    instana_agent_endpoint_host == '' or
+    instana_agent_endpoint_port | int == 0 or
+    instana_agent_agent_key == ''
+
+- include_tasks: repo.yml
+  when: instana_agent_configure_repo
+- include_tasks: copy_rpm.yml
+- include_tasks: local_install_rpm.yml
+# - include_tasks: install.yml
+- include_tasks: init.yml
+- include_tasks: files.yml

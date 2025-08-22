@@ -1,0 +1,19 @@
+# encoding: utf-8
+---
+
+- name: instana-agent-restart
+  service:
+    name: instana-agent
+    state: restarted
+    enabled: yes
+  become: yes
+
+- name: 'ensure the agent is running'
+  become: yes
+  service:
+    name: 'instana-agent'
+    state: 'started'
+
+- name: reload-systemd
+  become: yes
+  shell: "systemctl daemon-reload"
