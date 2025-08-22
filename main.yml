@@ -10,12 +10,15 @@
       instana_agent_updates_interval: "DAY"
       instana_agent_updates_time: "04:30"
       instana_agent_zone: "prod"
+
       instana_agent_agent_key: snVMhmK2SOSVFGZ2ue1Cow
       instana_agent_endpoint_host: agent-acceptor.vaazdlvapm300.wellpoint.com
       instana_agent_endpoint_port: 443
       instana_agent_configure_repo: no
-      instana_agent_rpm: asdf.rpm
+      instana_agent_rpm: instana-agent-static-20250822-1047.x86_64.rpm
       tmp_directory: /tmp
+
+
 
 # AIX RPM install:  RPM includes Java
 # https://artifact-public.instana.io/artifactory/rel-rpm-agent-local/ppc/
